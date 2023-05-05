@@ -1,0 +1,15 @@
+<h3>Login</h3>
+<form [formGroup]="credentialsForm">
+  <div>
+    <label for="username">Username: </label>
+    <input id="username" (keyup)="changeUsername($event)" formControlName="username" required>
+    <span *ngIf="usernameCtrl?.invalid && (usernameCtrl?.dirty || usernameCtrl?.touched)">Username is required</span>
+  </div>
+  <div>
+    <label for="password">Password: </label>
+    <input id="password" (keyup)="changePassword($event)" type="password" formControlName="password" required>
+    <span *ngIf="passwordCtrl?.invalid && (passwordCtrl?.dirty || passwordCtrl?.touched)">Password is required</span>
+  </div>
+  <button type="submit" (click)="submit()" [disabled]="usernameCtrl?.invalid || passwordCtrl?.invalid">Submit
+  </button>
+</form>

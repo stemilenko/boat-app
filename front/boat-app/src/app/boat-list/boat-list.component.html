@@ -1,0 +1,13 @@
+<h3>Boat List</h3>
+<ul>
+  <li *ngFor="let boat of boats">
+    <span>{{boat.id}}: </span>
+    <a routerLink="/boat-details/{{boat.id}}">
+      <span>{{boat.name}}</span>
+    </a>
+    <span> - {{boat.description}}</span>
+  </li>
+</ul>
+<button type="button" (click)="addBoat()">Add
+</button>
+<app-messages></app-messages>

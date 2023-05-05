@@ -1,0 +1,31 @@
+<h3>Boat Details</h3>
+<button type="submit" (click)="backToList()">Back
+</button>
+<div *ngIf="!boat">Boat not found</div>
+<div *ngIf="!!boat">
+  <form [formGroup]="boatForm">
+    <div *ngIf="!boat.id">Id: N/A</div>
+    <div *ngIf="!!boat.id">Id: {{boat.id}}</div>
+    <div>
+      <label for="name">Name: </label>
+      <input id="name" (keyup)="changeName($event)" formControlName="name" required>
+      <span *ngIf="nameCtrl?.invalid && (nameCtrl?.dirty || nameCtrl?.touched)">Name is required</span>
+    </div>
+    <div>
+      <label for="description">Description: </label>
+      <input id="description" (keyup)="changeDescription($event)" formControlName="description" required>
+      <span *ngIf="descriptionCtrl?.invalid && (descriptionCtrl?.dirty || descriptionCtrl?.touched)">Description is required</span>
+    </div>
+    <div *ngIf="!boat.id">
+      <button type="submit" (click)="addBoat()" [disabled]="nameCtrl?.invalid || descriptionCtrl?.invalid">Add
+      </button>
+    </div>
+    <div *ngIf="!!boat.id">
+      <button type="submit" (click)="updateBoat()" [disabled]="nameCtrl?.invalid || descriptionCtrl?.invalid">Update
+      </button>
+      <button type="submit" (click)="deleteBoat()">Delete
+      </button>
+    </div>
+  </form>
+</div>
+<app-messages></app-messages>
